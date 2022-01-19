@@ -25,9 +25,9 @@ print("The total payment for these movies is: {}".format(total_payment))
 #  hours for Facebook, 6 hours for Google and 4 hours for Amazon.
 
 def weekly_pay():
-    hours_google = int (input ("how many hours did you work for google?  "))
-    hours_amazon = int (input ("how many hours did you work for amazon?  "))
-    hours_facebook = int (input ("how many hours did you work for facebook?  "))
+    hours_google = int (input ("how many hours did you work for google?\n"))
+    hours_amazon = int (input ("how many hours did you work for amazon?\n"))
+    hours_facebook = int (input ("how many hours did you work for facebook?\n"))
     weekly_pay = (400 * hours_google + 380 * hours_amazon + 350 * hours_facebook)
     return ("Your weekly pay is: {}".format(weekly_pay))
 
@@ -43,8 +43,8 @@ print(weekly_pay())
 
 
 def can_enroll():
-    is_full= input("Is the class full? True or False?")
-    class_conflict= input("is there a class conflict? True or False?")
+    is_full= input("Is the class full? True or False?\n")
+    class_conflict= input("is there a class conflict? True or False?\n")
     can_enroll= (is_full.lower() != "true") and (class_conflict.lower() != "true")
     if can_enroll:
         return "Student can enroll"
@@ -76,9 +76,9 @@ print(can_enroll())
 # and the offer has not expired. Premium members do not need to buy a specific amount
 #  of products. 
 
-total_items = int (input ("How many items are bought:  "))
-is_expired= (input("Is offer expired? True or False.").lower() == "true")
-is_premium= (input("Is member premium? True or False.").lower() == "true")
+total_items = int (input ("How many items are bought:\n"))
+is_expired= (input("Is offer expired? True or False.\n").lower() == "true")
+is_premium= (input("Is member premium? True or False.\n").lower() == "true")
 can_apply= (is_premium and not is_expired) or (total_items > 2 and (not is_expired))
 
 
