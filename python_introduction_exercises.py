@@ -22,3 +22,6 @@ print("Hello, World!")
 #  greeting variable.print ('hello world')
 
 greeting = ('hello world')
+
+# >>> print(greeting)
+# hello world
