@@ -191,11 +191,15 @@ def normalize_name(name):
     white space and make lower"""
     # run through all letter and delete non valid chars
     for letter in name:
+        #if its not a valid identifier
         if not letter.isidentifier():
-            name = name.replace(letter, "")
+            #but not a " "
+            if letter != " ":
+                # replace
+                name = name.replace(letter, "")
     # strip and make lower
     name = name.strip().lower()
-    # replace spaces with '_'
+    # replace internal spaces with '_'
     name = name.replace(" ", "_")
     return name
 
