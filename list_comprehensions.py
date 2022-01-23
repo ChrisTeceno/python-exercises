@@ -1,6 +1,6 @@
 # *****************************************************************
 # print statements can be replaced with requested variables,
-# the comprehension is the same
+# the list comprehension is the same
 # *****************************************************************
 
 
