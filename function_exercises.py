@@ -59,10 +59,10 @@ is_consonant("1")
 # The function should capitalize the first letter of the word
 # if the word starts with a consonant.
 def cap_first_consonant(n):
-    """return the input string with a capital first letter 
+    """return the input string with a capital first letter
     if the first letter is a consonant"""
     # is the first letter a consonant
-    if is_consonant(n[0]):  
+    if is_consonant(n[0]):
         # replace the first letter with uppercase
         return n.replace(n[0], n[0].upper(), 1)
 
@@ -76,26 +76,31 @@ cap_first_consonant("TEST")
 # Define a function named calculate_tip.
 # It should accept a tip percentage (a number between 0 and 1)
 # and the bill total, and return the amount to tip.
-def calculate_tip(bill, tip):
-    """return tip amount from entered bill and tip percent 
+def calculate_tip(bill, tip=0.2):
+    """return tip amount from entered bill and tip percent
     bill in numeric form and tip 0.0 to 1.0 (100%) or higher"""
     # simple math
-    return bill * tip
+    tip_amount = bill * tip
+    # limit to two decimal places then convert back to a float
+    return float(f"{tip_amount:.2f}")
 
-#test cases
+
+# test cases
 calculate_tip(100, 0.25)
 calculate_tip(1000, 0.2)
-calculate_tip(100, 0.5)
+calculate_tip(1032434, 0.167)
+calculate_tip(375.67, 0.21)
 # *************************************************************************
 
 # Define a function named apply_discount.
 # It should accept a original price, and a discount percentage,
 # and return the price after the discount is applied.
 def apply_discount(price, discount):
-     """return price after discount, input """
+    """return price after discount, input"""
     return price - (price * discount)
 
-#test
+
+# test
 apply_discount(100, 0.10)
 # *************************************************************************
 
@@ -104,8 +109,9 @@ apply_discount(100, 0.10)
 # in it as input, and return a number as output.
 def handle_commas(number):
     """take a string of numbers and commas, remove commas"""
-    #find all commas, replace with "" then return as float
+    # find all commas, replace with "" then return as float
     return float(number.replace(",", ""))
+
 
 # test
 handle_commas("1,000,000")
@@ -117,38 +123,40 @@ handle_commas("1000000")
 # Define a function named get_letter_grade.
 # It should accept a number and return the letter grade associated with
 # that number (A-F).
-def get_letter_grade(grade):
+def get_letter_grade(grade=90):
     """take in int grade and return letter grade"""
-    #check conditions and return once met
+    # check conditions and return once met
     if grade > 100:
-        print("Someone did a lot of bonus problems!!!!")
-        return("{} is an A++++++".format(grade))
+        return (
+            "{} is an A++++++   ".format(grade)
+            + "Someone did a lot of bonus problems!!!!"
+        )
     elif grade > 98:
-        return("{} is an A+".format(grade))
+        return "{} is an A+".format(grade)
     elif grade > 92:
-        return("{} is an A".format(grade))
+        return "{} is an A".format(grade)
     elif grade > 88:
-        return("{} is an A-".format(grade))
+        return "{} is an A-".format(grade)
     elif grade > 85:
-        return("{} is an B+".format(grade))
+        return "{} is an B+".format(grade)
     elif grade > 81:
-        return("{} is an B".format(grade))
+        return "{} is an B".format(grade)
     elif grade > 79:
-        return("{} is an B-".format(grade))
+        return "{} is an B-".format(grade)
     elif grade > 77:
-        return("{} is an C+".format(grade))
+        return "{} is an C+".format(grade)
     elif grade > 68:
-        return("{} is an C".format(grade))
+        return "{} is an C".format(grade)
     elif grade > 66:
-        return("{} is an C-".format(grade))
+        return "{} is an C-".format(grade)
     elif grade > 64:
-        return("{} is an D+".format(grade))
+        return "{} is an D+".format(grade)
     elif grade > 61:
-        return("{} is an D".format(grade))
+        return "{} is an D".format(grade)
     elif grade > 59:
-        return("{} is an D-".format(grade))
+        return "{} is an D-".format(grade)
     else:
-        return("{} is an F---------".format(grade))
+        return "{} is an F---------".format(grade)
 
 
 get_letter_grade(1000)
@@ -159,15 +167,16 @@ get_letter_grade(1000)
 # that accepts a string and returns a string with all the vowels removed.
 def remove_vowels(word):
     """input string, remove all vowels"""
-    #loop through letter
+    # loop through letter
     for letter in word:
-        #if its a vowel
+        # if its a vowel
         if is_vowel(letter):
-            #replace vowel with ""
+            # replace vowel with ""
             word = word.replace(letter, "")
     return word
 
-#test
+
+# test
 remove_vowels("word")
 remove_vowels("words and other things 3424234")
 remove_vowels("word up magazine!")
@@ -191,9 +200,9 @@ def normalize_name(name):
     white space and make lower"""
     # run through all letter and delete non valid chars
     for letter in name:
-        #if its not a valid identifier
+        # if its not a valid identifier
         if not letter.isidentifier():
-            #but not a " "
+            # but not a " "
             if letter != " ":
                 # replace
                 name = name.replace(letter, "")
@@ -203,13 +212,14 @@ def normalize_name(name):
     name = name.replace(" ", "_")
     return name
 
-#test
+
+# test
 normalize_name(" stEVe Harvey#@$")
 normalize_name("I eat a lot of tacos")
 normalize_name("When IS LUNCH!@#!@#!")
-normalize_name("Name") #will become name
-normalize_name("First Name") #will become first_name
-normalize_name("% Completed") #will become completed
+normalize_name("Name")  # will become name
+normalize_name("First Name")  # will become first_name
+normalize_name("% Completed")  # will become completed
 # *************************************************************************
 
 
@@ -220,19 +230,20 @@ normalize_name("% Completed") #will become completed
 # cumulative_sum([1, 2, 3, 4]) returns [1, 3, 6, 10]
 def cumulative_sum(list):
     """take in a list, return a list with cumulative
-     sums along the list"""
-     # make a variable to track sum
+    sums along the list"""
+    # make a variable to track sum
     current_sum = 0
-    #make a list to be outputted
+    # make a list to be outputted
     sum_list = []
     # got through input list
     for n in list:
-        #increase sum
+        # increase sum
         current_sum += n
-        #add new value to output list
+        # add new value to output list
         sum_list.append(current_sum)
-        #return the new list
+        # return the new list
     return sum_list
+
 
 # test
 cumulative_sum([1, 1, 1])  # returns [1, 2, 3]
@@ -257,47 +268,50 @@ cumulative_sum([1, 2, 3, 4])  # returns [1, 3, 6, 10]
 def twelveto24(time12):
     """take in a time string 'HH:MMam/pm' return string as 'HHMM'
     corrected for 24 hour clock"""
-    #split time into HH and MMam/pm
-    time_bits = time12.split(':')
-    #check if am in string
+    # split time into HH and MMam/pm
+    time_bits = time12.split(":")
+    # check if am in string
     if "am" in time12.lower():
-        #check time_bits[0] to see if single or double digit
-        if len(time_bits[0])==1:
-            #add leading 0 if its single digit
-            time_bits[0]="0{}".format(time_bits[0])
+        # check time_bits[0] to see if single or double digit
+        if len(time_bits[0]) == 1:
+            # add leading 0 if its single digit
+            time_bits[0] = "0{}".format(time_bits[0])
         # set up variable with result
-        #result is first bit of input plus the first 2 chars of second bit
-        time24 = "{}{}".format(time_bits[0],time_bits[1][0:2])
-        return(time24)
-    #does not contain am so assume it is pm
+        # result is first bit of input plus the first 2 chars of second bit
+        time24 = "{}{}".format(time_bits[0], time_bits[1][0:2])
+        return time24
+    # does not contain am so assume it is pm
     else:
-        time24 = "{}{}".format(int(time_bits[0]) + 12,time_bits[1][0:2])
-        return(time24)  
+        time24 = "{}{}".format(int(time_bits[0]) + 12, time_bits[1][0:2])
+        return time24
 
-# test      
-twelveto24('1:45am')
-twelveto24('4:45pm')
-twelveto24('11:45am')
-twelveto24('10:45pm')
+
+# test
+twelveto24("1:45am")
+twelveto24("4:45pm")
+twelveto24("11:45am")
+twelveto24("10:45pm")
 # *************************************************************************
+
 
 def twentyfourto12(time24):
     """take in a time string 'HHMM' return string as 'HH:MMam/pm'
     corrected for 24 hour clock"""
     # single digit hour am
-    if int(time24)<1000:
+    if int(time24) < 1000:
         # leading 0 not included in formatting
-        return "{}:{}am".format(time24[-3],time24[-2:])
-    #double digit hour am
-    if int(time24)<1200:
-        return "{}:{}am".format(time24[:-2],time24[-2:])
-    #pm cases
+        return "{}:{}am".format(time24[-3], time24[-2:])
+    # double digit hour am
+    if int(time24) < 1200:
+        return "{}:{}am".format(time24[:-2], time24[-2:])
+    # pm cases
     else:
-        #input hour - 12
-        new_hour= "{}".format((int(time24[-4:-2])-12))
-        return "{}:{}pm".format(new_hour,time24[-2:])
+        # input hour - 12
+        new_hour = "{}".format((int(time24[-4:-2]) - 12))
+        return "{}:{}pm".format(new_hour, time24[-2:])
 
-# test      
+
+# test
 twentyfourto12("0445")
 twentyfourto12("1113")
 twentyfourto12("1622")
@@ -314,22 +328,24 @@ twentyfourto12("2300")
 # import string to allow string.ascii_uppercase
 import string
 
+
 def col_index(col_name):
     """inout column name, return index, from A to ZZ"""
-    #make list A-Z
-    col_names = list (string.ascii_uppercase)
+    # make list A-Z
+    col_names = list(string.ascii_uppercase)
     # add AA-ZZ
     for i in range(26):
-        #append i twice, A becomes AA
-        col_names.append(col_names[i]*2)
+        # append i twice, A becomes AA
+        col_names.append(col_names[i] * 2)
     # run through know length A to ZZ
     for i in range(52):
         # check the col name vs current col name in index
         if col_names[i] == col_name:
             # return index plus  for offset, index starts at 0 not 1
-            return i+1
+            return i + 1
+
 
 # test
-col_index('A') #returns 1
-col_index('B') #returns 2
-col_index('AA') #returns 27
+col_index("A")  # returns 1
+col_index("B")  # returns 2
+col_index("AA")  # returns 27
